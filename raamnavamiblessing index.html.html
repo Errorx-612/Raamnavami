@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Ramnavami</title>
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background: radial-gradient(circle at top,#220033,#000);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* headline glow */
+h1{
+font-size: clamp(34px,6vw,64px);
+margin-top:20px;
+color:#ffd700;
+text-shadow:0 0 15px #ff9900,0 0 35px #ff3300;
+animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{ text-shadow:0 0 10px #ff9900;}
+to{ text-shadow:0 0 40px #ff0000,0 0 80px orange;}
+}
+
+/* goddess animation */
+.goddess{
+width:270px;
+max-width:85%;
+margin-top:20px;
+border-radius:20px;
+animation: float 4s ease-in-out infinite, aura 3s infinite;
+}
+
+@keyframes float{
+0%,100%{ transform:translateY(0)}
+50%{ transform:translateY(-22px)}
+}
+
+@keyframes aura{
+0%{ box-shadow:0 0 25px gold}
+50%{ box-shadow:0 0 70px orange}
+100%{ box-shadow:0 0 25px gold}
+}
+
+.viral{
+margin-top:25px;
+font-size:20px;
+color:#ffccff;
+text-shadow:0 0 10px magenta;
+animation: zoom 3s infinite;
+padding:0 15px;
+}
+
+@keyframes zoom{
+0%{ transform:scale(1)}
+50%{ transform:scale(1.08)}
+100%{ transform:scale(1)}
+}
+
+.bless{
+margin-top:15px;
+font-size:18px;
+color:#00ffcc;
+text-shadow:0 0 8px cyan;
+}
+
+/* input */
+input{
+padding:12px;
+font-size:18px;
+border-radius:8px;
+border:none;
+margin-top:20px;
+width:230px;
+max-width:80%;
+text-align:center;
+}
+
+button{
+padding:12px 26px;
+font-size:18px;
+margin-top:12px;
+border:none;
+border-radius:8px;
+background:linear-gradient(45deg,#ffcc00,#ff6600);
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{ transform:scale(1.06)}
+
+#linkBox{
+margin-top:18px;
+color:#00ffcc;
+word-break:break-all;
+padding:0 15px;
+}
+
+.whatsapp{
+display:none;
+margin-top:15px;
+background:#25D366;
+color:white;
+}
+
+/* fireworks */
+.firework{
+position:fixed;
+width:6px;
+height:6px;
+border-radius:50%;
+animation: boom 1.2s linear infinite;
+}
+
+@keyframes boom{
+from{ transform:scale(1); opacity:1}
+to{ transform:scale(22); opacity:0}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1 id="headline">🌸 Happy Ramnavami 🌸</h1>
+
+<img class="goddess"
+src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA... (TRUNCATED FOR DISPLAY)">
+<!-- NOTE: data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQEBAQEBAVFRUVFRUVFRUVFRUVFRUVFRUWFhUVFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGhAQGi0lHyUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBIgACEQEDEQH/xAAbAAACAgMBAAAAAAAAAAAAAAAFBgMEAAIHB//EADsQAAIBAwMCBAQEBQMFAQAAAAECAwAEEQUSITFBBhMiUWFxgZEUMqGx0fAHFSNSYnKC4SNDkqKy/8QAGQEBAQEBAQEAAAAAAAAAAAAAAAEDAgQF/8QAJxEBAQEBAQACAgICAgMAAAAAAAECEQMhEjFBBBNRImFxgZGh8P/aAAwDAQACEQMRAD8A+8REQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERA...-->
+
+<div class="viral">
+✨ जो भी इस पावन संदेश को 5 लोगों को शेयर करेगा  
+2026 में उसके जीवन से दुःख, गरीबी और परेशानियाँ दूर होंगी  
+और सफलता के नए रास्ते खुलेंगे ✨
+</div>
+
+<div class="bless">
+🙏 भगवान श्रीराम आपकी हर मनोकामना पूर्ण करें  
+और आपके जीवन में सुख-शांति व समृद्धि लाएँ 🙏
+</div>
+
+<br>
+
+<input id="name" placeholder="अपना नाम लिखें">
+<br>
+<button onclick="generate()">OK</button>
+
+<div id="linkBox"></div>
+
+<button class="whatsapp" id="wa" onclick="shareWhats()">📲 WhatsApp पर शेयर करें</button>
+
+<script>
+function getName(){
+let url=new URL(window.location.href);
+let from=url.searchParams.get("from");
+if(from){
+document.getElementById("headline").innerText=
+"🌸 Happy Ramnavami from "+from+" 🌸";
+}
+}
+getName();
+
+function generate(){
+let name=document.getElementById("name").value.trim();
+if(!name){ alert("पहले अपना नाम लिखें"); return;}
+let link=location.origin+location.pathname+"?from="+encodeURIComponent(name);
+document.getElementById("linkBox").innerText=link;
+document.getElementById("wa").style.display="inline-block";
+window.generatedLink=link;
+}
+
+function shareWhats(){
+let text="🌸 रामनवमी की शुभकामनाएं 🌸 "+window.generatedLink;
+if(navigator.share){
+navigator.share({title:"Ramnavami",text:text,url:window.generatedLink});
+}else{
+window.open("https://wa.me/?text="+encodeURIComponent(text));
+}
+}
+
+/* fireworks */
+function fire(){
+let f=document.createElement("div");
+f.className="firework";
+f.style.left=Math.random()*100+"vw";
+f.style.top=Math.random()*100+"vh";
+f.style.background="hsl("+Math.random()*360+"deg,100%,50%)";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1200);
+}
+setInterval(()=>{
+for(let i=0;i<9;i++) fire();
+},3000);
+</script>
+
+</body>
+</html>
+
+
+<script>
+  atOptions = {
+    'key' : '8e463acd08453e58d3af16811caa9c78',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/8e463acd08453e58d3af16811caa9c78/invoke.js"></script>
+
